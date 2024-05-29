@@ -1,40 +1,39 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Typography } from "@utils/typography";
-import { Input } from "@utils/input";
 import Copy from "@assets/copy";
 import Star from "@assets/star";
-import Snippet from "@assets/snippet";
 import { Button } from "@utils/button";
 import ButtonCopy from "@utils/buttonCopy";
 import ArrowDown from "@assets/arrowdown";
-import SmallCodeSnippet from "@assets/smallcodesnippet";
 import SecondCopy from "@assets/secondcopy";
-import { toast, ToastContainer } from "react-toastify";
+import { toast,} from "react-toastify";
+import useLocalStorage from "@hooks/useLocalStorage";
+import { DriverDataProps } from "@api/mainAppContext/index.types";
+import { useAppContext } from "@api/mainAppContext";
 
 interface ApiDetails {
   endpoint: string;
   method: string;
-  response: {
-    status: number;
-    message: string;
-    success: boolean;
-    stack: string;
-  };
+  response: DriverDataProps[];
+   
 }
 
 function ConnectApi() {
-  const response: ApiDetails = {
-    endpoint: "/api/signup",
-    method: "POST",
-    response: {
-      status: 200,
-      message: "User signed up successfully",
-      success: true,
-      stack: "/hjbcdcjbjcbd",
-    },
-  };
-  const [getApi, setGetApi] = useState<ApiDetails | null>(response);
+  const id = "";
+  const [secondStoredValue, secondSetValue, secondRemoveItem] = useLocalStorage("formData",{ FullName: "", NIN: null });
+  const [driverID, setdriverId] = useLocalStorage("driverId", id);
+  const { getDriverData, driverState } = useAppContext();
 
+
+  const response: ApiDetails = {
+    endpoint: "https://descout.vercel.app/api/v1/driver/nin/:nin",
+    method: "GET",
+    response : driverState
+    
+  };
+
+  const [getApi, setGetApi] = useState<ApiDetails | null>(response);
+  
   const copyToClipboard = (text: string) => {
     navigator.clipboard
       .writeText(text)
@@ -53,13 +52,8 @@ function ConnectApi() {
       if (!prev) return null;
       return {
         ...prev,
-        endpoint: "/api/searchNIn",
+        endpoint: `https://descout.vercel.app/api/v1/driver/nin/${secondStoredValue.NIN}`,
         method: "GET",
-        response: {
-          ...prev.response,
-          status: 200,
-          message: "User signed up declinedliny",
-        },
       };
     });
   };
@@ -68,12 +62,8 @@ function ConnectApi() {
       if (!prev) return null;
       return {
         ...prev,
-        endpoint: "/api/searchName",
-        method: "PUT",
-        response: {
-          ...prev.response,
-          status: 400,
-        },
+        endpoint: `https://descout.vercel.app/api/v1/driver/name/${secondStoredValue.FullName}`,
+        method: "GET",
       };
     });
   };
@@ -82,13 +72,8 @@ function ConnectApi() {
       if (!prev) return null;
       return {
         ...prev,
-        endpoint: "/api/searchID",
+        endpoint: `https://descout.vercel.app/api/v1/driver/${driverID}`,
         method: "GET",
-        response: {
-          ...prev.response,
-          status: 500,
-          message: "User signed up unsuccessfully",
-        },
       };
     });
   };
@@ -120,13 +105,14 @@ function ConnectApi() {
               <div className=" mmd:w-full">
                 <ButtonCopy
                   label="DE Base API Endpoint "
-                  children={"https://www.dis.com"}
+                  children={"https://descout.vercel.app/api/v1"}
                   rightIcon={<Copy />}
                   size="crap"
                   customClass="bg-[#F9FAFB] md:max-w-[321px]"
                   labelCustomClassName="text-woodsmoke-950 font-bold"
                   color="star9"
                   fontWeight="medium"
+                  onClick={()=>{copyToClipboard("https://descout.vercel.app/api/v1")}}
                 />
               </div>
               <div className="flex gap-4 items-center mmd:flex-col mmd:items-start mmd:gap-8">
@@ -140,6 +126,7 @@ function ConnectApi() {
                     labelCustomClassName="text-woodsmoke-950 font-bold"
                     color="star9"
                     fontWeight="medium"
+                    onClick={()=>{copyToClipboard("12344257875366")}}
                   />
                 </div>
               </div>
@@ -180,8 +167,8 @@ function ConnectApi() {
                 <div className="px-[64px] py-[32px] border-md bg-[#F4F4F4] mmd:px-[24px] mmd:py-[16px] mmd:flex mmd:items-center mmd:justify-center">
                   <div className="flex flex-col gap-4 mmd:w-full">
                     <div className="flex gap-4 items-center mmd:flex-col mmd:w-full">
-                      <div className="mmd:w-full">
-                        <div className="xl:w-[294px]">
+                      <div className="mmd:w-full w-1/2">
+                        <div className=" whitespace-pre-wrap">
                           <div className="bg-[#2F2F2F] flex items-center justify-between  rounded-tr-[6px] rounded-tl-[6px] py-[6px] px-[11px]">
                             <Typography color="apicolor">
                               request url
@@ -195,17 +182,17 @@ function ConnectApi() {
                               onClick={()=> copyToClipboard(JSON.stringify(getApi?.endpoint, null, 2))}
                             />
                           </div>
-                          <div className="bg-[#0D0D0D] h-[83px] text-white p-[16px] rounded-bl-[6px] rounded-br-[6px]">
-                          <pre className="text-white font-CabinetGrotesk">{JSON.stringify(getApi?.endpoint, null, 2)}</pre>
+                          <div className="bg-[#0D0D0D] h-[83px] text-white p-[16px] rounded-bl-[6px] rounded-br-[6px] ">
+                          <pre className="text-white font-CabinetGrotesk  overflow-x-auto whitespace-pre-wrap">{JSON.stringify(getApi?.endpoint, null, 2)}</pre>
                           </div>
                         </div>
                       </div>
-                      <div className="mmd:w-full xl:w-[294px]">
+                      <div className="mmd:w-full w-1/2 ">
                         {" "}
-                        <div className="rounded-md">
+                        <div className="w-full">
                           <div className="bg-[#2F2F2F] flex items-center justify-between py-[6px] px-[11px] rounded-tr-[6px] rounded-tl-[6px]">
                             <Typography color="apicolor">
-                              request url
+                              request method
                             </Typography>
                             <Button
                               leftIcon={<SecondCopy />}
@@ -218,7 +205,7 @@ function ConnectApi() {
                           </div>
                           <div className="bg-[#0D0D0D] min-h-[83px] text-white p-[16px] rounded-bl-[6px] rounded-br-[6px]">
                            
-                            <pre className="text-white font-CabinetGrotesk">{JSON.stringify(getApi?.method, null, 2)}</pre>
+                            <pre className="text-white font-CabinetGrotesk  overflow-x-auto whitespace-pre-wrap">{JSON.stringify(getApi?.method, null, 2)}</pre>
                           
                           </div>
                         </div>
@@ -239,8 +226,8 @@ function ConnectApi() {
                           />
                         </div>
                         <div className="bg-[#0D0D0D] min-h-[134px] text-white p-[16px] rounded-bl-[6px] rounded-br-[6px]">
-                        <pre className="text-white font-CabinetGrotesk">
-                            {JSON.stringify(getApi?.response, null, 2)}
+                        <pre className="text-white font-CabinetGrotesk  overflow-x-auto max-h-[134px] overflow-y-auto whitespace-pre-wrap">
+                            {JSON.stringify(getApi?.response[0], null, 2)}
                           </pre>
                         </div>
                       </div>

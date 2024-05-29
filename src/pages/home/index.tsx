@@ -34,7 +34,9 @@ function Home() {
   const [isTrue, setIsTrue] = useState(false);
   const[isLoading, setLoading] = useState(false);
   const { getDriverData, driverState } = useAppContext();
+  const id = "";
   const [formData, setFormData] = useLocalStorage("formData", { FullName: "", NIN: null });
+  const [driverID, setdriverId] = useLocalStorage("driverId", id);
   const {
     register,
     reset,
@@ -72,7 +74,7 @@ function Home() {
         setIsTrue(true);
         setLoading(false);
         setFormData(data);
-        console.log("e worked", driverState);
+        setdriverId(response?.data?.data?._id);
         toast.success("Driver information fetched successfully!", {
           position: "top-right",
           autoClose: 5000,

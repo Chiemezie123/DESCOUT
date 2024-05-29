@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { PerformComp } from "@utils/performcomp";
 import Warning from "@assets/warning";
 import Sprinkles from "@assets/sprinkles";
 import Chart from "@assets/chart";
-import TableComp from "@utils/table";
 import { Typography } from "@utils/typography";
 import secondcolumns from "@utils/table/secondTableColumn";
 import SideContainer from "@utils/sidecontainer";
@@ -38,8 +37,9 @@ export default function Third() {
   const MainRideArray = ridesArray[0];
   const ride = MainRideArray.find((item) => item.name === 'Rida');
  const RidaTable =ride?.dvi;
+ const RidaReviews = ride?.reviews;
 
-  console.log(ride?.dvi,"dvi array")
+  console.log(ride?.reviews,"reviews")
 
   console.log(ride,"this is stored value")
   const getColor = (amount: number | undefined): string => {
@@ -52,7 +52,7 @@ export default function Third() {
   return (
     <div className="py-[20px] pl-[20px] pr-[40px] flex flex-col gap-12 mxxxs:p-[24px]">
     <div className="flex mmd:flex-col">
-      <div className="flex-grow">
+      <div className="flex-grow xl:w-1/3">
         <PerformComp
           header="Discplinary Issue(s)"
           icon={<Warning />}
@@ -61,7 +61,7 @@ export default function Third() {
           color={getColor(ride?.disciplinaryIssue?.amount)}
         />
       </div>
-      <div className="flex-grow">
+      <div className="flex-grow xl:w-1/3">
         <PerformComp
           header="Ratings"
           icon={<Sprinkles />}
@@ -70,7 +70,7 @@ export default function Third() {
           color="#0E9F6E"
         />
       </div>
-      <div className="flex-grow">
+      <div className="flex-grow xl:w-1/3">
         <PerformComp
           header="Trips"
           icon={<Chart />}
@@ -141,27 +141,15 @@ export default function Third() {
           <Button rightIcon={<ArrowDown />} children="Show all" />
         </div>
       </div>
-      <div className="flex items-center gap-4 mmd:flex-col ">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 overflow-y-auto max-h-[250px] mmd:max-h-[405px]">
         <div className="flex-grow">
-          <Review
-            text1="Riding in aderiye’s car was very enjoyeable. We talked and vibed along the way. I enjoyed his jokes and nice sense of humour."
-            text2="23rd, Dec 2024."
+          {RidaReviews?.map((review)=>(
+            <Review
+            text1={review.review}
+            text2={review.timestamp}
             icon={<ReviewIcon />}
           />
-        </div>
-        <div className="flex-grow">
-          <Review
-            text1="Riding in aderiye’s car was very enjoyeable. We talked and vibed along the way. I enjoyed his jokes and nice sense of humour."
-            text2="23rd, Dec 2024."
-            icon={<ReviewIcon />}
-          />
-        </div>
-        <div className="flex-grow">
-          <Review
-            text1="Riding in aderiye’s car was very enjoyeable. We talked and vibed along the way. I enjoyed his jokes and nice sense of humour."
-            text2="23rd, Dec 2024."
-            icon={<ReviewIcon />}
-          />
+          ))}
         </div>
       </div>
     </div>
