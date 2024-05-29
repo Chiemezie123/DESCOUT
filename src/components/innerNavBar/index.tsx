@@ -1,10 +1,18 @@
-import React from "react";
+import SelectComp from "@utils/select";
 import { NavLink } from "react-router-dom";
 
 export default function InnerNavBar() {
+
+  const options = [
+    { value: '/home', label: 'Bolt Ride-Share' },
+    { value: '/home/lagride', label: 'lagride' },
+    { value: '/home/rida', label: 'rida' },
+    { value: '/home/shuttler', label: 'shuttler' },
+    { value: '/home/uber', label: 'uber' }
+  ]
   return (
     <>
-      <div className="flex items-center 2xl:gap-32 xl:gap-32 lg:gap-[64px] ">
+      <div className="flex items-center 2xl:gap-32 xl:gap-32 lg:gap-[64px] mmd:hidden ">
         <div>
           <NavLink
             to="/home"
@@ -66,6 +74,9 @@ export default function InnerNavBar() {
             Uber
           </NavLink>
         </div>
+      </div>
+      <div className="lg:hidden" >
+      <SelectComp options={options}/>
       </div>
     </>
   );

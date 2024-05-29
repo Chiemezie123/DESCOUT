@@ -65,7 +65,7 @@ export default function Register() {
               labelCustomClassName="text-star-dust-500"
               maindiv="flex-grow-3"
               passwordFunc={togglePassword}
-              icon2={passwordState ?<Eye/>:<EyeSlash/>}
+              icon2={passwordState ? <EyeSlash/>:<Eye/>}
               passwordWay={passwordState}
             />
             <Input
@@ -76,7 +76,7 @@ export default function Register() {
               labelCustomClassName="text-star-dust-500"
               maindiv="flex-grow-3"
               passwordFunc={toggleSecondPassword}
-              icon2={secondPasswordState?<Eye/>:<EyeSlash/>}
+              icon2={secondPasswordState? <EyeSlash/>:<Eye/>}
               passwordWay={secondPasswordState}
             />
           </div>

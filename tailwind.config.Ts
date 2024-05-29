@@ -91,6 +91,7 @@ const config = {
           "900": "#3d3d3d",
           "950": "#161616",
         },
+        apicolor:"#B8C4CE",
         special: "#4C4C4C",
         admin: "#1671D9",
         auditor: "#0F973D",

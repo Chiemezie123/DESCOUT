@@ -8,8 +8,19 @@ import Warning from "@assets/warning";
 import SideContainer from "@utils/sidecontainer";
 import Car from "@assets/car";
 import MobileNav from "@components/mobileNav";
+import SelectComp from "@utils/select";
+import DummyFolder from "@test/dummyfolder";
+import Copy from "@assets/copy";
+import { Typography } from "@utils/typography";
 
 function Test() {
+
+
+  const options = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'strawberry', label: 'Strawberry' },
+    { value: 'vanilla', label: 'Vanilla' }
+  ]
   return (
     <>
       <div>
@@ -42,6 +53,28 @@ function Test() {
       <div>
         <MobileNav/>
       </div>
+      <div>
+        <SelectComp options={options} placeholder="this is it"/>
+      </div>
+      <div>
+
+<div>
+ <div className="bg-[#2F2F2F] flex justify-between">
+   <Typography color="apicolor">
+     request url
+   </Typography>
+   <Button leftIcon={<Copy/>} children="copy code" fit color="apicolor"/>
+ </div>
+ <div className="bg-[#0D0D0D] h-[60px] text-white">
+      this is the dipal code dcdfeddcdcdcdcdcdc
+ </div>
+</div>
+
+</div>
+      <div>
+        <DummyFolder/>
+      </div>
+     
     </>
   );
 }

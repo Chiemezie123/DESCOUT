@@ -1,4 +1,3 @@
-import React from "react";
 import { NavLink } from "react-router-dom";
 import { Typography } from "@utils/typography";
 import Shape from "@assets/shape";
@@ -6,7 +5,8 @@ import Settings from "@assets/settings";
 import Bell from "@assets/bell";
 import Hamburger from "@assets/hamburger";
 import Cancel from "@assets/close";
-
+import useLocalStorage from "@hooks/useLocalStorage";
+import { DriverDataProps } from "@api/mainAppContext/index.types";
 
 type NavBarProps ={
   navState?: boolean;
@@ -15,11 +15,19 @@ type NavBarProps ={
 }
 function NavBar(props:NavBarProps) {
   const{navState, setNavState} = props;
+  const initialDriverData:DriverDataProps[] =[];
+const [storedValue, setValue, removeItem] = useLocalStorage("storedDriverInfo",initialDriverData);
+const [secondStoredValue, secondSetValue, secondRemoveItem] = useLocalStorage("formData",{ FullName: "", NIN: null });
+
+const clearData =()=> {
+  removeItem();
+  secondRemoveItem();
+}
   return (
     <>
       <div className=" flex flex-row justify-between">
         <div className="flex items-center justify-evenly gap-8 px-2">
-          <div className="pr-6 border-r ">
+          <div className="pr-6 border-r "onClick={clearData}>
             <NavLink to="/">
               <Typography
                 variant="body-m"

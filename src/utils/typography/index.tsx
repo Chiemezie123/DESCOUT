@@ -46,6 +46,7 @@ const typography = cva("", {
       star10: "text-star-dust-900",
       special: "text-special",
       info: "text-info",
+      apicolor:"text-apicolor",
       success: "text-success-900",
       warn: "text-warning",
       error: "text-error",

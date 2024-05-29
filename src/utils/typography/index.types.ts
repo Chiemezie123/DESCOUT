@@ -45,7 +45,8 @@ export type TypographyColors =
   | "star8"
   | "star9"
   | "star10"
-  | "special";
+  | "special"
+  | "apicolor";
 
 export type TypographyAlign =
   | "start"

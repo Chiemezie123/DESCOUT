@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Typography } from "@utils/typography";
 import { Input } from "@utils/input";
 import Search from "@assets/search";
@@ -15,38 +15,53 @@ import Circlezero from "@assets/circleZero";
 import Map from "@assets/map";
 import axios, { AxiosError } from "axios";
 import { Circles } from "react-loader-spinner";
-import { toast, ToastContainer } from "react-toastify";
+import { toast} from "react-toastify";
 import { useAppContext } from "@api/mainAppContext";
 import { FieldErrors, useForm } from "react-hook-form";
+import useLocalStorage from "@hooks/useLocalStorage";
+
 
 type formValueProps = {
-  FullName?: string;
-  NIN?: number;
+  FullName?: string | undefined | null;
+  NIN?: number | null | undefined;
 };
 
 interface ErrorResponse {
   message: string;
-  // Add other fields from the error response if necessary
+
 }
 function Home() {
   const [isTrue, setIsTrue] = useState(false);
   const[isLoading, setLoading] = useState(false);
   const { getDriverData, driverState } = useAppContext();
+  const [formData, setFormData] = useLocalStorage("formData", { FullName: "", NIN: null });
   const {
     register,
     reset,
     handleSubmit,
     formState: { isDirty, isValid, isSubmitting, isSubmitSuccessful },
-  } = useForm<formValueProps>();
+  } = useForm<formValueProps>({ defaultValues: formData,});
 
   useEffect(() => {
     if (isSubmitSuccessful) {
-      reset();
+      // reset();
+      console.log("successful")
     }
   }, [isSubmitSuccessful, reset]);
 
+ useEffect(()=>{
+  if(driverState.length >0){
+    setIsTrue(true)
+  }
+ },[driverState])
+
+
+ 
+
+
   const submitter = async (data: formValueProps) => {
     setLoading(true);
+    console.log(data, "what is submitted")
     const getUserInfo = async () => {
       try {
         const response = await axios.get(
@@ -55,7 +70,8 @@ function Home() {
         console.log(response, "returned api");
         getDriverData(response?.data?.data);
         setIsTrue(true);
-        setLoading(false)
+        setLoading(false);
+        setFormData(data);
         console.log("e worked", driverState);
         toast.success("Driver information fetched successfully!", {
           position: "top-right",
@@ -103,7 +119,7 @@ function Home() {
   };
 
 
-  const imageSparkles =  <img src="/public/sparkles.svg" />
+  const imageSparkles =  <img src="/sparkles.svg" />
   return (
     <>
       <div className="">
@@ -422,7 +438,7 @@ function Home() {
                     </div>
                   ))}
                   <div className="border flex-grow">
-                    <div className="border-b pt-[48px] pl-[20px] md:pr-[0px]">
+                    <div className="border-b pt-[48px] pl-[20px] md:pr-[0px] mmd:pr-[40px] mxxxs:pr-[20px]">
                       <InnerNavBar />
                     </div>
                     <div>

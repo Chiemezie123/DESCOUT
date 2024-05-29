@@ -42,7 +42,7 @@ const ButtonCopy: React.FC<buttonCopyProps> = (props) => {
         )}
         <div
           className={cn(
-            `relative w-full rounded-md border  focus-within:border-rose-500`,
+            `relative w-full rounded-md border  focus-within:border-[#654EF2]`,
             label ? "px-2 " : "",
             customClass
           )}

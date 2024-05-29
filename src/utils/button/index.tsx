@@ -47,6 +47,7 @@ export const button = cva("", {
       star10: "text-star-dust-900",
       white: "text-white",
       primary: "text-black",
+      apicolor: "text-apicolor",
       link: "text-blue-ribbon-700",
       secondary:
         "bg-secondary-main !text-primary-main border border-secondary-main",

@@ -6,7 +6,6 @@ import Chart from "@assets/chart";
 import TableComp from "@utils/table";
 import { Typography } from "@utils/typography";
 import secondcolumns from "@utils/table/secondTableColumn";
-import { SecondTable } from "@mock/secondmock";
 import SideContainer from "@utils/sidecontainer";
 import Car from "@assets/car";
 import Circlezero from "@assets/circleZero";
@@ -27,7 +26,14 @@ export default function Fifth() {
   const ride = MainRideArray.find((item) => item.name === 'Uber');
   const rideTable = ride?.dvi;
 
-
+  const getColor = (amount: number | undefined): string => {
+    if (amount === undefined) return "#0E9F6E";
+    if (amount >= 0 && amount <= 1) return "green";
+    if (amount >= 2 && amount <= 5) return "#a68b02";
+    if (amount >= 6) return "red";
+    return "#0E9F6E"; 
+  };
+  
   console.log(storedValue,"this is stored value")
   return (
     <div className="py-[20px] pl-[20px] pr-[40px] flex flex-col gap-12 mxxxs:p-[24px]">
@@ -38,7 +44,7 @@ export default function Fifth() {
           icon={<Warning />}
           text={ride?.disciplinaryIssue?.comment}
           count={ride?.disciplinaryIssue?.amount}
-          color="#0E9F6E"
+          color={getColor(ride?.disciplinaryIssue?.amount)}
         />
       </div>
       <div className="flex-grow">

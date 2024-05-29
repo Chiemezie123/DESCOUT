@@ -6,7 +6,6 @@ import Chart from "@assets/chart";
 import TableComp from "@utils/table";
 import { Typography } from "@utils/typography";
 import secondcolumns from "@utils/table/secondTableColumn";
-import { SecondTable } from "@mock/secondmock";
 import SideContainer from "@utils/sidecontainer";
 import Car from "@assets/car";
 import Circlezero from "@assets/circleZero";
@@ -28,6 +27,7 @@ type rideProps = {
   trips: number;
 } | undefined
 
+
 export default function Third() {
   const initialDriverData:DriverDataProps[] =[];
   const [ridaInfo , setRidaInfo]= useState<rideProps>();
@@ -42,8 +42,13 @@ export default function Third() {
   console.log(ride?.dvi,"dvi array")
 
   console.log(ride,"this is stored value")
-
-
+  const getColor = (amount: number | undefined): string => {
+    if (amount === undefined) return "#0E9F6E"; // default color if amount is undefined
+    if (amount >= 0 && amount <= 1) return "green";
+    if (amount >= 2 && amount <= 5) return "#a68b02";
+    if (amount >= 6) return "red";
+    return "#0E9F6E"; // default color if none of the conditions match
+  };
   return (
     <div className="py-[20px] pl-[20px] pr-[40px] flex flex-col gap-12 mxxxs:p-[24px]">
     <div className="flex mmd:flex-col">
@@ -53,7 +58,7 @@ export default function Third() {
           icon={<Warning />}
           text={ride?.disciplinaryIssue?.comment}
           count={ride?.disciplinaryIssue?.amount}
-          color="#0E9F6E"
+          color={getColor(ride?.disciplinaryIssue?.amount)}
         />
       </div>
       <div className="flex-grow">

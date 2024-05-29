@@ -8,8 +8,6 @@ interface AppContextType {
   getDriverData: (item: DriverDataProps) => void;
 }
 
-
-// Create the context
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const useAppContext = () => {
@@ -21,12 +19,14 @@ export const useAppContext = () => {
 };
 
 const initialDriverData:DriverDataProps[] =[];
+
 interface AppProviderProps {
   children: React.ReactNode;
-}
+};
+
 export const AppProvider:React.FC<AppProviderProps> = ({ children }:any) => {
 
-  const[storedValue, setValue]= useLocalStorage("storedDriverInfo",initialDriverData);
+  const[storedValue, setValue]= useLocalStorage("storedDriverInfo", initialDriverData);
 
   const [driverState,setDriverState] = useState<DriverDataProps[]>(storedValue);
 

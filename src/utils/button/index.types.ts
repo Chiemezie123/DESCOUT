@@ -35,6 +35,7 @@ export type ButtonColors =
   | "success"
   | "error"
   | "info"
+  | "apicolor"
   | "primary-light-100";
 
 export interface ButtonProps
