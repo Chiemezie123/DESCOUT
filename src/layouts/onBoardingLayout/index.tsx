@@ -1,8 +1,5 @@
-import React from "react";
 import { Typography } from "@utils/typography";
-import Cuppy from "@assets/cuppy";
 import Arry from "@assets/arry";
-import { Input } from "@utils/input";
 import { Button } from "@utils/button";
 import { useNavigate } from "react-router-dom";
 

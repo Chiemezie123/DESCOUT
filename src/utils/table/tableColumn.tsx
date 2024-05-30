@@ -5,19 +5,13 @@ import { ColumnDef } from "@tanstack/react-table";
 // import Complete from "@assets/svgs/Complete";
 // import Rejected from "@assets/svgs/Rejected";
 // import Pending from "@assets/svgs/Pending";
-import { mainTableProps, tableProps } from "@mock/index";
+import {tableProps } from "@mock/index";
 import { Typography } from "@utils/typography";
 import { Button } from "@utils/button";
 import Trash from "@assets/trash";
 import Note from "@assets/note";
 
-// {
-//   productName: "Rhubarb",
-//   TransactionID: "#E230A90",
-//   Date: "2/22/2022",
-//   Amount: "Krona",
-//   Status: "Completed"
-// },
+
 const columns: ColumnDef<Partial<tableProps>>[] = [
   {
     accessorKey: "deleteCar",
@@ -98,16 +92,6 @@ const columns: ColumnDef<Partial<tableProps>>[] = [
       const transaction = row.original;
       const { role } = transaction;
       const ExactColor = (text: string) => {
-        const backgroundColors = {
-          blue: "#E3EFFC", // yellow
-          green: "#E7F6EC", // green
-          orange: "#FEF6E7", // Red
-        };
-        const textStatusColors = {
-          blue: "#1671D9", // yellow
-          green: "#0F973D", // green
-          orange: "#F3A218", // Red
-        };
         if (text === "Admin") {
           return <div className={`bg-[#E3EFFC] text-#1671D9] px-[12px] py-[4px] rounded-[12px] flex justify-center items-center w-[85px] mxxs:hidden`}>{text}</div>;
         } else if (text === "Auditor") {

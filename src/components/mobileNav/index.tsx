@@ -1,4 +1,4 @@
-import React from "react";
+
 import Settings from "@assets/settings";
 import Bell from "@assets/bell";
 import { Typography } from "@utils/typography";

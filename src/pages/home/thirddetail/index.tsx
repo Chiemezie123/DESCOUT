@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { PerformComp } from "@utils/performcomp";
 import Warning from "@assets/warning";
 import Sprinkles from "@assets/sprinkles";
@@ -18,20 +17,11 @@ import SecondTableComp from "@utils/table/secondReactTable";
 import useLocalStorage from "@hooks/useLocalStorage";
 import { DriverDataProps } from "@api/mainAppContext/index.types";
 
-type rideProps = {
-  disciplinaryIssue: any;
-  dvi: any;
-  name: string;
-  ratings: number;
-  trips: number;
-} | undefined
 
 
 export default function Third() {
   const initialDriverData:DriverDataProps[] =[];
-  const [ridaInfo , setRidaInfo]= useState<rideProps>();
-
-  const[storedValue, setValue] = useLocalStorage("storedDriverInfo", initialDriverData);
+  const[storedValue] = useLocalStorage("storedDriverInfo", initialDriverData);
 
   const ridesArray = storedValue.map((value) => value.ridesInfo);
   const MainRideArray = ridesArray[0];

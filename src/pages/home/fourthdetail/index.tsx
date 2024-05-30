@@ -1,9 +1,7 @@
-import React from "react";
 import { PerformComp } from "@utils/performcomp";
 import Warning from "@assets/warning";
 import Sprinkles from "@assets/sprinkles";
 import Chart from "@assets/chart";
-import TableComp from "@utils/table";
 import { Typography } from "@utils/typography";
 import secondcolumns from "@utils/table/secondTableColumn";
 import SideContainer from "@utils/sidecontainer";

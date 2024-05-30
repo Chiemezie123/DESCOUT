@@ -1,5 +1,4 @@
 import React from "react";
-import { cva } from "class-variance-authority";
 import { buttonCopyProps } from "./index.types";
 import { CircularLoader } from "@utils/circularLoader";
 import { button } from "@utils/button";

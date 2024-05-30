@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "@components/navBar";
 import MobileNav from "@components/mobileNav";

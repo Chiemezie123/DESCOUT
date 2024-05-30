@@ -4,7 +4,6 @@ import ConnectApi from "@pages/connectApi";
 import Home from "@pages/home";
 import Update from "@pages/update";
 import Test from "@test/testcomponents";
-import fifthDetail from "@pages/home/fifthdetail";
 import Fourth from "@pages/home/fourthdetail";
 import Third from "@pages/home/thirddetail";
 import Second from "@pages/home/seconddetail";

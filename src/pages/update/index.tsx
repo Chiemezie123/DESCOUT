@@ -1,4 +1,3 @@
-import React from "react";
 import { Typography } from "@utils/typography";
 import { Button } from "@utils/button";
 import Cloud from "@assets/cloud";

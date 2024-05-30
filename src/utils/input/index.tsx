@@ -1,15 +1,14 @@
 import React, { ForwardedRef } from "react";
-import clsx from "clsx";
+
 import cn from "@utils/common";
 import {
   FieldValues,
   UseFormRegisterReturn,
-  Path,
   InternalFieldName,
 } from "react-hook-form";
 
 import { InputProps } from "./index.types";
-import { Typography } from "../typography";
+
 
 const InputComponent = <FV extends FieldValues>(
   props: InputProps<FV>,
@@ -88,11 +87,7 @@ const InputComponent = <FV extends FieldValues>(
             rest.disabled
               ? "disabled:cursor-not-allowed disabled:bg-primary-light-100 disabled:font-semibold  disabled:text-gray-3"
               : "",
-            // errorMsg
-            //   ? " "
-            //   : successMsg
-            //   ? "border-success text-success focus:border-success focus:ring-success"
-            //   : "focus:ring-primary-dark border-gray-4 text-primary-main focus:border-success"
+           
           )}
           id={name}
           placeholder={placeholder}
@@ -100,17 +95,6 @@ const InputComponent = <FV extends FieldValues>(
           {...registerInput}
         />
       </div>
-
-      {/* {!hideErrorMsg && (errorMsg || successMsg) ? (
-        <Typography
-          variant="caption-s"
-          fontWeight="regular"
-          color={errorMsg ? "error" : "success"}
-          customClassName="mt-2"
-        >
-          {errorMsg || successMsg}
-        </Typography>
-      ) : null} */}
     </div>
   );
 };

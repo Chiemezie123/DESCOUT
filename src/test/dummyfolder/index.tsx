@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import { FiCopy } from 'react-icons/fi'; // Use this for additional custom styles if needed
 import Copy from '@assets/copy';
 
 interface ApiDetails {

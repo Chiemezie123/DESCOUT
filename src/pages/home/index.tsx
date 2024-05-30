@@ -39,17 +39,12 @@ function Home() {
   const [driverID, setdriverId] = useLocalStorage("driverId", id);
   const {
     register,
-    reset,
+
     handleSubmit,
-    formState: { isDirty, isValid, isSubmitting, isSubmitSuccessful },
+    formState: {  isSubmitting },
   } = useForm<formValueProps>({ defaultValues: formData,});
 
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      // reset();
-      console.log("successful")
-    }
-  }, [isSubmitSuccessful, reset]);
+  
 
  useEffect(()=>{
   if(driverState.length >0){

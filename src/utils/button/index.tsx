@@ -69,79 +69,10 @@ export const button = cva("", {
       black: "font-black",
     },
   },
-  // compoundVariants: [
-  //   {
-  //     variant: ["outlined", "transparent"],
-
-  //     class: "text-primary-main border-primary-main ",
-  //   },
-  //   {
-  //     variant: ["outlined", "transparent"],
-
-  //     class: "text-gray-3 border-gray-3 ",
-  //   },
-  //   {
-  //     variant: ["outlined", "transparent"],
-  //     color: "success",
-  //     class: "text-success border-success ",
-  //   },
-  //   {
-  //     variant: ["outlined", "transparent"],
-  //     color: "error",
-  //     class: "text-error border-error ",
-  //   },
-  //   {
-  //     variant: ["outlined", "transparent"],
-  //     color: "secondary",
-  //     class: "text-primary-main border-secondary-main ",
-  //   },
-  //   {
-  //     variant: "text",
-  //     class: "text-primary-main",
-  //   },
-  //   {
-  //     variant: "text",
-  //     class: "text-gray-1",
-  //   },
-  //   {
-  //     variant: "text",
-
-  //     class: "text-gray-3",
-  //   },
-  //   {
-  //     variant: "text",
-  //     color: "success",
-  //     class: "text-success",
-  //   },
-  //   {
-  //     variant: "text",
-  //     color: "error",
-  //     class: "text-error",
-  //   },
-  //   {
-  //     variant: "text",
-  //     color: "info",
-  //     class: "text-info",
-  //   },
-  //   {
-  //     variant: "text",
-  //     color: "secondary",
-  //     class: "text-primary-main",
-  //   },
-  //   {
-  //     variant: "filled",
-  //     color: "primary-light-100",
-  //     class: "text-primary-main",
-  //   },
-  //   {
-  //     variant: "text",
-  //     size: "large",
-  //     class: "!py-0 !px-0",
-  //   },
-  // ],
+ 
 });
 
-// Button component
+
 const Button: React.FC<ButtonProps> = (props) => {
   const {
     variant,
@@ -156,7 +87,7 @@ const Button: React.FC<ButtonProps> = (props) => {
     fit,
     
     size = "large",
-    type = "button", //default
+    type = "button", 
     ...rest
   } = props;
 
@@ -172,8 +103,7 @@ const Button: React.FC<ButtonProps> = (props) => {
           rest.disabled ? "bg-gray-500":"",
           fit ? "w-fit" : "w-full",
           customClassName,
-          // ["text", "outlined"].includes(variant) ? "disabled:!text-gray-3 disabled:[&>path]:stroke-gray-3" : " disabled:!text-white"
-        ),
+            ),
       })}
       type={type}
      

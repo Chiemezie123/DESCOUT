@@ -18,7 +18,7 @@ import { DriverDataProps } from "@api/mainAppContext/index.types";
 import useLocalStorage from "@hooks/useLocalStorage";
 export default function Fifth() {
   const initialDriverData:DriverDataProps[] =[];
-  const[storedValue, setValue] = useLocalStorage("storedDriverInfo", initialDriverData)
+  const[storedValue] = useLocalStorage("storedDriverInfo", initialDriverData)
   const ridesArray = storedValue.map((value) => value.ridesInfo);
   const MainRideArray = ridesArray[0];
   const ride = MainRideArray.find((item) => item.name === 'Uber');
