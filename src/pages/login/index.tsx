@@ -72,7 +72,7 @@ export default function Login() {
       }
     }
     sumbitLoginForm();
-    
+
     }
   
 
@@ -92,7 +92,7 @@ export default function Login() {
   };
   return (
     <div className="bg-black bg-custom-image bg-cover bg-center h-screen text-white pt-[100px] msm:pt-[20px] px-[20px]">
-      <div className="max-w-[660px] mx-auto bg-[#141414] min-h-[514px] msm:h-full  px-[48px] msm:px-[24px] py-[32px] msm:py-[16px] flex flex-col gap-8 ">
+      <div className="max-w-[660px] mx-auto bg-[#141414] min-h-[514px] msm:h-full  px-[48px] msm:px-[24px] py-[48px] msm:py-[24px] flex flex-col gap-8 ">
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-2">
             <Typography variant="h4" fontWeight="bold" font="CabinetGrotesk">

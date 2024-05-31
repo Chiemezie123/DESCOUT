@@ -44,7 +44,7 @@ const InputComponent = <FV extends FieldValues>(
 
   const validation = {
     required: required || false,
-    pattern: validationPattern ? { value: validationPattern, message: message || 'Invalid input' } : undefined,
+    pattern: validationPattern ? { value: validationPattern as RegExp, message: message || 'Invalid input' } : undefined,
   };
 
  const registerInput = register ? register(name, validation) : undefined;
@@ -69,7 +69,7 @@ const InputComponent = <FV extends FieldValues>(
           errorMsg ?" border border-error  text-error":"focus-within:border-indigo-500",
           label ? "px-2 " : "",
           customClassName,
-          bgcolor
+          bgcolor 
         )}
       >
         <div className="absolute left-2 top-1/2 transform -translate-y-1/2 ">
