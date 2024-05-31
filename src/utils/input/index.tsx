@@ -12,7 +12,7 @@ import { InputProps } from "./index.types";
 
 const InputComponent = <FV extends FieldValues>(
   props: InputProps<FV>,
-  // ref?: ForwardedRef<HTMLInputElement>
+
 ) => {
   const {
     placeholder,
