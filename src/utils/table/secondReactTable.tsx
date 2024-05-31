@@ -8,16 +8,9 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { Typography } from "@utils/typography";
-import { Link } from "react-router-dom";
-// import { FaArrowRightLong } from "react-icons/fa6";
-// import cn from "../../utils/common";
-// import Search from "./search";
 import { useState } from "react";
 import "./tableComp.css";
-// import FilterBy from "./filterBy";
-// import Pagination from "@uiElements/Pagination";
-// import SelectComp from "@uiElements/select";
-// import { MainSelectProps, SelectOption } from "@uiElements/select/index.types";
+
 
 interface TableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -30,13 +23,9 @@ export default function SecondTableComp<TData, TValue>({
 }: TableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState<string>("");
-  const [currentFilter, setCurrentFilter] = useState<
-    | {
-        id: string;
-        value: string;
-      }[]
-    | null
-  >();
+ 
+  setColumnFilters
+  setGlobalFilter
 
   const table = useReactTable({
     data,
@@ -49,14 +38,7 @@ export default function SecondTableComp<TData, TValue>({
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
   });
-  // const handleSearch = (query: string) => {
-  //   setGlobalFilter(query);
-  // };
-  // const handleFilterChange = (newFilter: { id: string; value: string }[]) => {
-  //   setCurrentFilter(newFilter);
-  //   setColumnFilters((prev) => [...prev, ...newFilter]);
-  //   console.log(newFilter);
-  // };
+
   return (
     <div className=" w-full overflow-x-auto border rounded-md">
       <table className="w-full">
@@ -84,7 +66,7 @@ export default function SecondTableComp<TData, TValue>({
         <tbody className="w-full">
           {table.getRowModel().rows.map((row) => (
             <tr className="bg-white [&:not(last_of_type)]:" key={row.id}>
-              {row.getVisibleCells().map((cell, cellIndex) => (
+              {row.getVisibleCells().map((cell) => (
                 <td
                   key={cell.id}
                   className={`py-4 first-of-type:px-4 last-of-type:px-4 pr-4 mmd:last-of-type:pl-2`}

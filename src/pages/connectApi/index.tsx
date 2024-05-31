@@ -20,9 +20,11 @@ interface ApiDetails {
 
 function ConnectApi() {
   const id = "";
-  const [secondStoredValue, secondSetValue, secondRemoveItem] = useLocalStorage("formData",{ FullName: "", NIN: null });
-  const [driverID, setdriverId] = useLocalStorage("driverId", id);
-  const { getDriverData, driverState } = useAppContext();
+  const formDataStorageArray = useLocalStorage("formData",{ FullName: "", NIN: null });
+  const secondStoredValue = formDataStorageArray[0];
+  const driverStorageArray = useLocalStorage("driverId", id);
+  const driverID = driverStorageArray[0];
+  const { driverState } = useAppContext();
 
 
   const response: ApiDetails = {

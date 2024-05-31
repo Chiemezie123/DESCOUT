@@ -16,8 +16,8 @@ const columns: ColumnDef<Partial<tableProps>>[] = [
   {
     accessorKey: "deleteCar",
     header: () => <div className="text-start pl-6 mxxs:hidden" >Delete</div>,
-    cell: ({ row }: any) => {
-      const transaction = row.original;
+    cell: () => {
+    
       return (
         <div className="mxxs:hidden">
           <Button
@@ -33,8 +33,8 @@ const columns: ColumnDef<Partial<tableProps>>[] = [
   {
     accessorKey: "editColor",
     header: () => <div className="text-start mxxs:hidden">Edit</div>,
-    cell: ({ row }: any) => {
-      const transaction = row.original;
+    cell: () => {
+   
       return (
         <div className="mxxs:hidden">
           <Button

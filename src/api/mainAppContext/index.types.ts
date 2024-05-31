@@ -34,5 +34,12 @@
   message: string;
   success: boolean;
 }
+
+export interface userDetails {
+  token: string;
+  companyName: string;
+  isloggedin: boolean;
+}
+
   
   

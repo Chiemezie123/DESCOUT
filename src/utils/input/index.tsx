@@ -1,4 +1,4 @@
-import React, { ForwardedRef } from "react";
+import React from "react";
 
 import cn from "@utils/common";
 import {
@@ -12,7 +12,7 @@ import { InputProps } from "./index.types";
 
 const InputComponent = <FV extends FieldValues>(
   props: InputProps<FV>,
-  ref?: ForwardedRef<HTMLInputElement>
+  // ref?: ForwardedRef<HTMLInputElement>
 ) => {
   const {
     placeholder,
@@ -27,9 +27,10 @@ const InputComponent = <FV extends FieldValues>(
     isSearchIcon,
     hideErrorMsg,
     bgcolor,
-    pattern,
+    validationPattern,
     message,
     maindiv,
+    required,
     register,
     passwordWay,
     passwordFunc,
@@ -42,11 +43,8 @@ const InputComponent = <FV extends FieldValues>(
 
 
   const validation = {
-    required:{
-      value: true,
-      message:"field is required"
-    },
-    pattern: pattern ? { value: pattern, message: message || 'Invalid input' } : undefined
+    required: required || false,
+    pattern: validationPattern ? { value: validationPattern, message: message || 'Invalid input' } : undefined,
   };
 
  const registerInput = register ? register(name, validation) : undefined;

@@ -1,11 +1,13 @@
 import React, { createContext, useState, useContext } from 'react';
-import { DriverDataProps } from './index.types';
+import { DriverDataProps , userDetails } from './index.types';
 import useLocalStorage from '@hooks/useLocalStorage';
 
 
 interface AppContextType {
-  driverState: DriverDataProps[],
+  driverState: DriverDataProps[];
+  userDetailState: userDetails;
   getDriverData: (item: DriverDataProps) => void;
+  userDetailHandler:(item: userDetails)=> void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -26,6 +28,16 @@ interface AppProviderProps {
 
 export const AppProvider:React.FC<AppProviderProps> = ({ children }:any) => {
 
+  const userDetails ={
+    isloggedin : false,
+    token : "",
+    companyName : "",
+  }
+
+  const[userDetail , setUserDetail]= useLocalStorage("loggedData", userDetails);
+  
+  const [userDetailState, setUserDetailState] = useState<userDetails>(userDetail);
+  
   const[storedValue, setValue]= useLocalStorage("storedDriverInfo", initialDriverData);
 
   const [driverState,setDriverState] = useState<DriverDataProps[]>(storedValue);
@@ -34,10 +46,16 @@ export const AppProvider:React.FC<AppProviderProps> = ({ children }:any) => {
     setDriverState([item]);
     setValue([item]);
   }
+  const userDetailHandler = (item:userDetails)=>{
+      setUserDetail(item);
+      setUserDetailState(item);
+  };
 
   const values:AppContextType ={
     driverState,
+    userDetailState,
     getDriverData,
+    userDetailHandler
   }
   return (
     <AppContext.Provider

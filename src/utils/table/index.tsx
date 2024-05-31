@@ -8,16 +8,8 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { Typography } from "@utils/typography";
-import { Link } from "react-router-dom";
-// import { FaArrowRightLong } from "react-icons/fa6";
-// import cn from "../../utils/common";
-// import Search from "./search";
 import { useState } from "react";
 import "./tableComp.css";
-// import FilterBy from "./filterBy";
-// import Pagination from "@uiElements/Pagination";
-// import SelectComp from "@uiElements/select";
-// import { MainSelectProps, SelectOption } from "@uiElements/select/index.types";
 
 interface TableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -36,14 +28,8 @@ export default function TableComp<TData, TValue>({
 }: TableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState<string>("");
-  const [currentFilter, setCurrentFilter] = useState<
-    | {
-        id: string;
-        value: string;
-      }[]
-    | null
-  >();
-
+  setGlobalFilter
+  setColumnFilters
   const table = useReactTable({
     data,
     state: {

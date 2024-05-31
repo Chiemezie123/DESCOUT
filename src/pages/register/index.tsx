@@ -24,6 +24,7 @@ export default function Register() {
   const RouteLogin = () => navigate("/login");
   const [passwordState, setPasswordState] = useState(false);
   const [secondPasswordState, setSecondPasswordState] = useState(false);
+  const [loading , setLoading] = useState<boolean>(false);
   const togglePassword = () => setPasswordState((prev) => !prev);
   const toggleSecondPassword = () => setSecondPasswordState((prev) => !prev);
 
@@ -45,10 +46,11 @@ export default function Register() {
     const resolver =  yupResolver<formValueProps>(schema);
 
     const form = useForm<formValueProps>({defaultValues:formValues, resolver});
-    const {register, handleSubmit,} = form;
-  
+    const {register, handleSubmit} = form;
+ 
 
     const sumbithandler = (data:formValueProps)=> {
+        setLoading(true);
         const formpayload = {
           companyName:data.companyName,
           email:data.emailAddress,
@@ -57,11 +59,21 @@ export default function Register() {
         const sumbitForm = async() =>{
           try {
             const response = await axios.post("https://descout.vercel.app/api/v1/auth", formpayload);
-            console.log('Response:', response);
-            // Handle successful response
-          } catch (error) {
+            toast.success(response?.data?.message,{
+              position: "top-right",
+              autoClose: 5000,
+            })
+            setLoading(false);
+            setTimeout(()=> (navigate("/login")),3000)
+          } catch (error:any) {
             console.error('Error:', error);
-            // Handle error
+            if(error.response.status === 409){
+              toast.error("user already exist",{
+                position: "top-right",
+                autoClose: 5000,
+              })
+            }
+            setLoading(false);
           }
         }
         sumbitForm();
@@ -202,6 +214,7 @@ export default function Register() {
                 customClassName="bg-[#654EF2] "
                 fontWeight="medium"
                 type="submit"
+                loading={loading}
               />
               <Button
                 children="Login to your account"

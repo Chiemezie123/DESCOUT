@@ -18,8 +18,8 @@ import { DriverDataProps } from "@api/mainAppContext/index.types";
 import useLocalStorage from "@hooks/useLocalStorage";
 export default function Fourth() {
   const initialDriverData:DriverDataProps[] =[];
-  const[storedValue, setValue] = useLocalStorage("storedDriverInfo", initialDriverData)
-
+  const driverStorageArray = useLocalStorage("storedDriverInfo", initialDriverData)
+  const storedValue = driverStorageArray[0];
   const ridesArray = storedValue.map((value) => value.ridesInfo);
   const MainRideArray = ridesArray[0];
   const ride = MainRideArray.find((item) => item.name === 'Shuttlers');

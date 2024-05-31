@@ -1,18 +1,18 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@components": ["components/*"],
-      "@api/*": ["api/*"],
-      "@assets/*": ["assets/*"],
-      "@hooks/*": ["hooks/*"],
-      "@layouts/*": ["layouts/*"],
-      "@mock/*": ["mock/*"],
-      "@pages/*": ["pages/*"],
-      "@router/*": ["router/*"],
-      "@store/*": ["store/*"],
-      "@utils/*": ["utils/*"],
-      "@test/*": ["test/*"]
+      "@api/*": ["src/api/*"],
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@mock/*": ["src/mock/*"],
+      "@pages/*": ["src/pages/*"],
+      "@router/*": ["src/router/*"],
+      "@store/*": ["src/store/*"],
+      "@utils/*": ["src/utils/*"],
+      "@test/*": ["src/test/*"]
     },
     "target": "ES2020",
     "useDefineForClassFields": true,

@@ -35,11 +35,14 @@ function Home() {
   const[isLoading, setLoading] = useState(false);
   const { getDriverData, driverState } = useAppContext();
   const id = "";
-  const [formData, setFormData] = useLocalStorage("formData", { FullName: "", NIN: null });
-  const [driverID, setdriverId] = useLocalStorage("driverId", id);
+  const formDataStorageArray = useLocalStorage<formValueProps>("formData", { FullName: "", NIN: null });
+  const formData = formDataStorageArray[0];
+  const setFormData = formDataStorageArray[1];
+
+  const driverStorageArray = useLocalStorage("driverId", id);
+  const setdriverId = driverStorageArray[1];
   const {
     register,
-
     handleSubmit,
     formState: {  isSubmitting },
   } = useForm<formValueProps>({ defaultValues: formData,});
@@ -151,7 +154,7 @@ function Home() {
                     maindiv="flex-grow-3 md:w-[321px] mmd:w-full"
                     errorMsg=""
                     register={register}
-                    pattern={/^[a-zA-Z'-]{1,50} [a-zA-Z'-]{1,50}$/}
+                    validationPattern={/^[a-zA-Z'-]{1,50} [a-zA-Z'-]{1,50}$/}
                     message=" please enter your first and second name"
                   />
                 </div>
@@ -165,7 +168,7 @@ function Home() {
                     maindiv="md:w-[250px] mmd:w-full"
                     errorMsg=""
                     register={register}
-                    pattern={/^\d{10}$/}
+                    validationPattern={/^\d{10}$/}
                     message="Nin should be a 10 digit number"
                   />
                 </div>

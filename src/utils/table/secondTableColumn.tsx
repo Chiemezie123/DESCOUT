@@ -6,7 +6,7 @@ import { ColumnDef } from "@tanstack/react-table";
 // import Rejected from "@assets/svgs/Rejected";
 // import Pending from "@assets/svgs/Pending";
 // import { mainTableProps, tableProps } from "@mock/index";
-import { secondTableProps, mainSecondTableProps } from "@mock/secondmock";
+import { secondTableProps} from "@mock/secondmock";
 import Avatar from "@assets/Avatar";
 import { Typography } from "@utils/typography";
 

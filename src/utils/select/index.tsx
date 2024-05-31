@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import Select, { components, ActionMeta, StylesConfig } from "react-select";
+import Select, { components, StylesConfig } from "react-select";
 import {
   MainSelectProps,
   SelectOption,
-  ValueOptionProps,
-  StylesType,
+
 } from "./index.types";
 import { useNavigate } from "react-router-dom";
 
@@ -14,6 +13,7 @@ const SelectComp: React.FC<MainSelectProps> = (props) => {
   type StylesType = StylesConfig<SelectOption, false>;
 
   const styles: StylesType = {
+
     control: (styles, { isFocused }) => ({
       ...styles,
       height: "40px",
@@ -29,9 +29,9 @@ const SelectComp: React.FC<MainSelectProps> = (props) => {
       borderRight: "none",
       textAlign: "start",
       color: "#654EF2",
-      boxShadow: isFocused ? 0 : 0,
+      boxShadow: isFocused ? '0 0 0 2px #654EF2' : 'none',
       "&:hover": {
-        borderColor: isFocused ? "#654EF2" : 0,
+        borderColor: isFocused ? "#654EF2" : "0",
       },
     }),
 
@@ -40,7 +40,7 @@ const SelectComp: React.FC<MainSelectProps> = (props) => {
       color: "#654EF2", // Apply text color for the selected value
     }),
 
-    option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+    option: (styles, {isDisabled, isFocused, isSelected }) => {
       return {
         ...styles,
         width: "100%",
@@ -60,7 +60,7 @@ const SelectComp: React.FC<MainSelectProps> = (props) => {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-      };
+      } as any;
     },
 
     dropdownIndicator: (styles) => ({
@@ -76,7 +76,7 @@ const SelectComp: React.FC<MainSelectProps> = (props) => {
 
   const handleChange = (
     e: SelectOption | null,
-    actionMeta: ActionMeta<SelectOption>
+
   ) => {
     setSelectedOption(e);
     if (e && e.value) {

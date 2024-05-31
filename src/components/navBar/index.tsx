@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { Typography } from "@utils/typography";
 import Shape from "@assets/shape";
-import Settings from "@assets/settings";
 import Bell from "@assets/bell";
 import Hamburger from "@assets/hamburger";
 import Cancel from "@assets/close";
 import useLocalStorage from "@hooks/useLocalStorage";
 import { DriverDataProps } from "@api/mainAppContext/index.types";
+import { useAppContext } from "@api/mainAppContext";
 
 type NavBarProps ={
   navState?: boolean;
@@ -16,13 +16,19 @@ type NavBarProps ={
 function NavBar(props:NavBarProps) {
   const{navState, setNavState} = props;
   const initialDriverData:DriverDataProps[] =[];
-const [storedValue, setValue, removeItem] = useLocalStorage("storedDriverInfo",initialDriverData);
-const [secondStoredValue, secondSetValue, secondRemoveItem] = useLocalStorage("formData",{ FullName: "", NIN: null });
+
+  const { userDetailState,}= useAppContext()
+const driverStorageArray = useLocalStorage("storedDriverInfo",initialDriverData);
+const formDataStorageArray = useLocalStorage("formData",{ FullName: "", NIN: null });
+const  removeItem  = driverStorageArray[2];
+const secondRemoveItem = formDataStorageArray[2];
 
 const clearData =()=> {
   removeItem();
   secondRemoveItem();
 }
+
+
   return (
     <>
       <div className=" flex flex-row justify-between">
@@ -101,9 +107,7 @@ const clearData =()=> {
           </div>
         </div>
         <div className="flex items-center justify-evenly gap-4 mmd:hidden">
-          <div>
-            <Settings />
-          </div>
+         
           <div>
             <Bell />
           </div>
@@ -117,7 +121,7 @@ const clearData =()=> {
                   fontWeight="medium"
                   font="CabinetGrotesk"
                 >
-                  userName
+                  {userDetailState?.companyName}
                 </Typography>
               </p>
             </div>

@@ -1,8 +1,8 @@
 import { LegacyRef } from "react";
-import { UseFormRegister, FieldValues, Path } from "react-hook-form";
+import { UseFormRegister, FieldValues, Path ,ValidationRule} from "react-hook-form";
 
 export interface InputProps<IFormValues extends FieldValues>
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'required' | 'pattern'>{
   id?: string;
   label?: React.ReactNode | string;
   name: Path<IFormValues>;
@@ -12,7 +12,7 @@ export interface InputProps<IFormValues extends FieldValues>
   infoMsg?: React.ReactNode | string;
   successMsg?: React.ReactNode | string;
   register?: UseFormRegister<IFormValues>;
-  required?: string;
+  required?: boolean | ValidationRule<boolean>;  
   customClassName?: string;
   ref?: LegacyRef<HTMLInputElement>;
   icon1?: React.ReactElement;
@@ -20,7 +20,7 @@ export interface InputProps<IFormValues extends FieldValues>
   labelCustomClassName?: string;
   bgcolor?: string;
   maindiv?: string;
-  pattern?: RegExp;
+  validationPattern?: ValidationRule<RegExp>;
   message?: string;
   passwordWay?: boolean;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;

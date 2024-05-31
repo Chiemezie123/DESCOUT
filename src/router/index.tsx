@@ -4,7 +4,7 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import { mainRoutes, testRoutes } from "./router";
+import { mainRoutes } from "./router";
 import { RouteElement } from "./index.types";
 
 function generateRoutes(routes: RouteElement[]): JSX.Element[] {
@@ -29,13 +29,10 @@ function generateRoutes(routes: RouteElement[]): JSX.Element[] {
 
 const mainAdminRoutes: JSX.Element[] = generateRoutes(mainRoutes);
 
-const MaintestRoutes: JSX.Element[] = generateRoutes(testRoutes);
-
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       {mainAdminRoutes}
-      {MaintestRoutes}
       <Route path="*" element={<div>page not found</div>} />
     </>
   )

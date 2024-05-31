@@ -3,7 +3,6 @@ import RootLayout from "@layouts/rootLayout";
 import ConnectApi from "@pages/connectApi";
 import Home from "@pages/home";
 import Update from "@pages/update";
-import Test from "@test/testcomponents";
 import Fourth from "@pages/home/fourthdetail";
 import Third from "@pages/home/thirddetail";
 import Second from "@pages/home/seconddetail";
@@ -12,6 +11,9 @@ import Fifth from "@pages/home/fifthdetail";
 import OnboardingLayout from "@layouts/onBoardingLayout";
 import Login from "@pages/login";
 import Register from "@pages/register";
+import ProtectedRoute from "@layouts/protectedLayout";
+
+
 
 const mainRoutes: RouteElement[] = [
 
@@ -29,7 +31,9 @@ const mainRoutes: RouteElement[] = [
     },
   {
     path: "/home",
-    element: <RootLayout />,
+    element: <ProtectedRoute>
+         <RootLayout />
+        </ProtectedRoute>,
     children: [
       {
         path: "",
@@ -66,7 +70,6 @@ const mainRoutes: RouteElement[] = [
   
 ];
 
-const testRoutes: RouteElement[] = [
-  { path: "/testcomponent", element: <Test /> }
-];
-export { mainRoutes, testRoutes };
+
+export { mainRoutes };
+

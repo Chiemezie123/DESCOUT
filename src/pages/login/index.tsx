@@ -12,6 +12,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useAppContext } from "@api/mainAppContext";
 
 type loginformProps ={
   email ?: string;
@@ -22,12 +23,15 @@ export default function Login() {
   const navigate = useNavigate();
   const routeRegisterPage = () => navigate("/register");
   const [passwordState, setPasswordState] = useState(false);
+  const [loading , setLoading] = useState<boolean>(false);
   const togglePassword = () => setPasswordState((prev) => !prev);
   const schema = yup.object().shape({
     email: yup.string().email("Invalid email address").required("Email is required"),
     password: yup.string().required(" password is required"),
    
   });
+  const {userDetailHandler} = useAppContext();
+
   const { register, handleSubmit } = useForm({ defaultValues:{
     email: "",
     password: "",
@@ -37,12 +41,25 @@ export default function Login() {
 
 
   const sumbitHandler =(data:loginformProps)=>{
+      setLoading(true);
     const sumbitLoginForm =async()=>{
       try {
-        const response = await axios.post("https://descout.vercel.app/api/v1/login", data);
-        console.log('Response:', response);
-        // Handle successful response
-      } catch (error:any) {
+        const response = await axios.post("https://descout.vercel.app/api/v1/auth/login", data);
+        console.log('Response:login', response);
+        const result ={
+          isloggedin : true,
+          token: response?.data?.data?.token,
+          companyName: response?.data?.data?.companyName,
+        }
+        userDetailHandler(result);
+        toast.success(response?.data?.message, {
+          position: "top-right",
+          autoClose: 5000,
+        });
+        navigate("/home")
+        setLoading(false);
+      }
+      catch (error:any) {
         if (error?.response?.status === 404) {
           const errorMessage = error?.message;
 
@@ -51,9 +68,11 @@ export default function Login() {
             autoClose: 5000,
           });
         }
+        setLoading(false);
       }
     }
     sumbitLoginForm();
+    
     }
   
 
@@ -149,6 +168,7 @@ export default function Login() {
                 customClassName="bg-[#654EF2] "
                 fontWeight="medium"
                 type="submit"
+                loading={loading}
               />
             </div>
           </div>
