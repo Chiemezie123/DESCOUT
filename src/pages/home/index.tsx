@@ -33,7 +33,7 @@ interface ErrorResponse {
 function Home() {
   const [isTrue, setIsTrue] = useState(false);
   const[isLoading, setLoading] = useState(false);
-  const { getDriverData, driverState } = useAppContext();
+  const { getDriverData, driverState ,userDetailState} = useAppContext();
   const id = "";
   const formDataStorageArray = useLocalStorage<formValueProps>("formData", { FullName: "", NIN: null });
   const formData = formDataStorageArray[0];
@@ -62,10 +62,17 @@ function Home() {
   const submitter = async (data: formValueProps) => {
     setLoading(true);
     console.log(data, "what is submitted")
+    const {token} = userDetailState;
+    console.log(token)
     const getUserInfo = async () => {
       try {
         const response = await axios.get(
-          `https://descout.vercel.app/api/v1/driver/?nin=${data.NIN}&name=${data.FullName}`
+          `https://descout.vercel.app/api/v1/driver/?nin=${data.NIN}&name=${data.FullName}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
         console.log(response, "returned api");
         getDriverData(response?.data?.data);

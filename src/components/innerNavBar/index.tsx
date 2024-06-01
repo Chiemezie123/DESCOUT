@@ -1,6 +1,7 @@
 import SelectComp from "@utils/select";
 import { NavLink } from "react-router-dom";
 
+
 export default function InnerNavBar() {
 
   const options = [

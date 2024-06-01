@@ -17,15 +17,22 @@ function NavBar(props:NavBarProps) {
   const{navState, setNavState} = props;
   const initialDriverData:DriverDataProps[] =[];
 
-  const { userDetailState,}= useAppContext()
+  const { userDetailState,}= useAppContext();
 const driverStorageArray = useLocalStorage("storedDriverInfo",initialDriverData);
 const formDataStorageArray = useLocalStorage("formData",{ FullName: "", NIN: null });
+const   loggedDataStorageArray = useLocalStorage("loggedData",{
+  isloggedin : false,
+  token : "",
+  companyName : "",
+});
 const  removeItem  = driverStorageArray[2];
 const secondRemoveItem = formDataStorageArray[2];
+const loggedRemoveItem = loggedDataStorageArray[2];
 
 const clearData =()=> {
   removeItem();
   secondRemoveItem();
+  loggedRemoveItem();
 }
 
 

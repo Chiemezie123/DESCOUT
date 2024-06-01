@@ -4,12 +4,15 @@ import Bell from "@assets/bell";
 import { Typography } from "@utils/typography";
 import Shape from "@assets/shape";
 import { NavLink } from "react-router-dom";
+import { useAppContext } from "@api/mainAppContext";
 
 type mobileNavProps ={
     setNavState: () => void;
 }
 
+
 export default function MobileNav(props:mobileNavProps) {
+  const { userDetailState}= useAppContext();
     const{setNavState} = props;
   return (
     <div className="flex flex-col gap-8 items-center bg-[#000000] py-10">
@@ -55,7 +58,7 @@ export default function MobileNav(props:mobileNavProps) {
                   fontWeight="medium"
                   font="CabinetGrotesk"
                 >
-                  userName
+                      {userDetailState?.companyName}
                 </Typography>
               </p>
             </div>
